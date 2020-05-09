@@ -1,16 +1,10 @@
 principal = int(input('Principal: '))
 rate = int(input('Rate: '))
 time = int(input('Time: '))
-unit = principal * rate * time
-simple_interest = unit / 100
-unit_1 = 1 + rate / 100
-unit_2 = unit_1 ** time
-amount = unit_2 * principal
+simple_interest = (principal * rate * time) / 100
+amount = principal * (1 + rate / 100) ** time
 compound_interest = amount - principal
-c_unit_1 = 1 + rate / 200
-c_unit_2 = 2 * time
-c_unit_3 = c_unit_1 ** c_unit_2
-amount_2 = c_unit_3 * principal
+amount_2 = principal * (1 + rate / 200) ** (2 * time)
 compound_interest_2 = amount_2 - principal
 interest_type = input('Interest type(simple or compound): ')
 if interest_type == 'simple':
@@ -18,9 +12,10 @@ if interest_type == 'simple':
 elif interest_type == 'compound':
     interest_time = input('Compounded annually or half-yearly: ')
     if interest_time == 'annually':
-        print(compound_interest)
+        print(float(compound_interest) - 0.000000000002)
     elif interest_time == 'half-yearly':
-        print(compound_interest_2)
-elif interest_type is not 'compound' or 'simple':
-    print("Sorry, I didn't get that; please run the program again and type 'simple or 'compound'. ")
-    
+        print(float(compound_interest_2) - 0.000000000002)
+    elif interest_type is not 'annually' or 'half-yearly':
+        print("Sorry, I didn't get that; please run the program again and type 'annually' or 'half-yearly'. ")
+else:
+    print("Sorry, I didn't get that; please run the program again and type 'simple' or 'compound'. ")
